@@ -1,1 +1,57 @@
+Table personaje {
+  id_personaje int [pk, increment]
+  nombre varchar
+  vida int
+  ataque int
+  defensa int
+  nivel_personaje int
+  experiencia int
+}
 
+Table nivel {
+  id_nivel int [pk, increment]
+  nombre_nivel varchar
+  dificultad varchar
+  descripcion text
+}
+
+Table enemigo {
+  id_enemigo int [pk, increment]
+  nombre varchar
+  vida int
+  ataque int
+  defensa int
+  recompensa_exp int
+  id_nivel int
+}
+
+Table objeto {
+  id_objeto int [pk, increment]
+  nombre varchar
+  tipo varchar
+  descripcion text
+  valor int
+}
+
+Table inventario {
+  id_inventario int [pk, increment]
+  id_personaje int
+  id_objeto int
+  cantidad int
+}
+
+Table mision {
+  id_mision int [pk, increment]
+  nombre varchar
+  descripcion text
+  recompensa int
+  id_personaje int
+}
+
+Ref: enemigo.id_nivel > nivel.id_nivel
+
+Ref: inventario.id_personaje > personaje.id_personaje
+
+Ref: inventario.id_objeto > objeto.id_objeto
+
+Ref: mision.id_personaje > personaje.id_personaje
